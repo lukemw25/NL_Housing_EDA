@@ -1,0 +1,26 @@
+data_source: "local"            # "kaggle" or "local"
+dataset_id: "bryan2k19/dutch-house-prices-dataset"
+raw_csv: "data/raw/raw_data.csv"
+interim_csv: "data/interim/cleaned_initial.csv"
+processed_parquet: "data/processed/housing_cleaned.parquet"
+target: "Price"
+timestamp: null                 # dataset has none; keep null
+random_state: 42
+
+cleaning:
+  rooms_max: 20
+  neigh_price_per_m2_rescale_threshold: 50
+  drop_na_cols_min_fraction: 0.0        # 0 = keep all; raise only on schema failures
+  standardize_casing: true
+
+features:
+  build_price_per_m2: true
+  build_age: true
+
+model:
+  test_size: 0.2
+  algo: "RandomForestRegressor"          # "LinearRegression" or "RandomForestRegressor"
+  rf_params:
+    n_estimators: 300
+    max_depth: 12
+    n_jobs: -1

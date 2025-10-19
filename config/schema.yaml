@@ -1,0 +1,10 @@
+columns:
+  Price: float
+  Lot size (m2): float
+  Living space size (m2): float
+  Rooms: int
+  Estimated neighbourhood price per m2: float
+  Build year: int
+  City: category
+  House type: category
+  Energy label: category
