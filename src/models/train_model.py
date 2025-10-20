@@ -49,10 +49,11 @@ def train(processed_parquet: str, params_path: str = "config/params.yaml") -> di
     pipe.fit(X_train, y_train)
     preds = pipe.predict(X_test)
 
+    mse = mean_squared_error(y_test, preds)
     metrics = {
         "r2": r2_score(y_test, preds),
         "mae": mean_absolute_error(y_test, preds),
-        "rmse": mean_squared_error(y_test, preds, squared=False),
+        "rmse": mse ** 0.5,
     }
 
     joblib.dump(pipe, "data/processed/model.pkl")
